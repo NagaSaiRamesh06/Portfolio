@@ -49,7 +49,7 @@ const Hero: React.FC = () => {
           <div className="flex flex-col items-center justify-center relative">
             <div className="relative w-72 h-72 md:w-96 md:h-96 rounded-full overflow-hidden border-4 border-blue-500/20 shadow-[0_0_80px_rgba(59,130,246,0.3)] animate-float">
               <img
-                src="/profile.jpg"
+                src="/Profile Pic.png"
                 alt="Naga Sai Ramesh Kunapalli"
                 className="w-full h-full object-cover"
               />
