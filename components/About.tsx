@@ -1,88 +1,155 @@
-
 import React from 'react';
+import { motion } from 'framer-motion';
+import { User, BookOpen, Terminal, Heart, Download, MessageSquare } from 'lucide-react';
 
 const About: React.FC = () => {
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: { staggerChildren: 0.1, delayChildren: 0.1 }
+    }
+  };
+
+  const cardVariants = {
+    hidden: { y: 20, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1,
+      transition: { type: 'spring', stiffness: 80, damping: 12 }
+    }
+  };
+
   return (
-    <section id="about" className="py-24 relative overflow-hidden">
-      {/* Background Gradient Orbs */}
-      <div className="absolute top-0 right-0 w-96 h-96 bg-blue-600/10 rounded-full blur-3xl -z-10"></div>
-      <div className="absolute bottom-0 left-0 w-96 h-96 bg-purple-600/10 rounded-full blur-3xl -z-10"></div>
+    <section id="about" className="py-28 relative overflow-hidden bg-[#030712]">
+      {/* Glow Orbs */}
+      <div className="absolute top-1/3 right-1/4 w-[500px] h-[500px] bg-blue-600/5 rounded-full blur-[140px] -z-10 animate-pulse"></div>
+      <div className="absolute bottom-10 left-10 w-[400px] h-[400px] bg-purple-600/5 rounded-full blur-[140px] -z-10"></div>
 
       <div className="container mx-auto px-6">
-        <div className="mb-12">
-          <h2 className="text-4xl md:text-5xl font-bold mb-6 text-white leading-tight">
-            Crafting Digital Excellence <br />
-            <span className="text-blue-500">One Line at a Time</span>
-          </h2>
+        {/* Section Title */}
+        <div className="text-center max-w-3xl mx-auto mb-16">
+          <motion.div 
+            initial={{ opacity: 0, y: -10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="inline-block px-4 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/20 mb-4"
+          >
+            <span className="text-xs font-semibold text-blue-400 uppercase tracking-widest">Get To Know Me</span>
+          </motion.div>
+          <motion.h2 
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.1 }}
+            className="text-4xl md:text-5xl font-black text-white"
+          >
+            Crafting Digital Excellence <span className="text-blue-500">One Line</span> at a Time
+          </motion.h2>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-6">
-          {/* CARD 1: BIO (Large Left) */}
-          <div className="md:col-span-2 glass p-8 rounded-3xl relative overflow-hidden group">
-            <div className="absolute top-0 right-0 p-8 opacity-10 font-black text-9xl text-white select-none transition-transform group-hover:scale-110 duration-700"></div>
-
-            <div className="relative z-10">
-              <div className="inline-block px-4 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/20 mb-6">
-                <span className="text-sm font-semibold text-blue-400 uppercase tracking-widest">About My Journey</span>
+        {/* Cards Grid */}
+        <motion.div 
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: '-100px' }}
+          className="grid md:grid-cols-2 lg:grid-cols-3 gap-6"
+        >
+          {/* Card 1: Who Am I */}
+          <motion.div 
+            variants={cardVariants}
+            className="glass p-8 rounded-3xl flex flex-col justify-between group hover:scale-[1.02] transition-all relative overflow-hidden border border-white/5 shadow-2xl"
+          >
+            <div className="space-y-4">
+              <div className="w-12 h-12 rounded-2xl bg-blue-500/10 flex items-center justify-center text-blue-400 border border-blue-500/20">
+                <User className="w-6 h-6" />
               </div>
-
-              <div className="space-y-6 text-gray-300 text-lg leading-relaxed">
-                <p>
-                  My name is <span className="text-white font-semibold">Naga Sai Ramesh Kunapalli</span>. I am a Computer Science graduate and MCA student with strong foundations in software development, data structures, and problem-solving.
-                </p>
-                <p>
-                  I specialize in building scalable full-stack applications using <span className="text-blue-400">Python, React, and Node.js</span>. My focus is on creating intuitive user experiences backed by robust, AI-enhanced architectures.
-                </p>
-
-                <div className="border-l-4 border-blue-500 pl-6 my-8 bg-white/5 p-4 rounded-r-xl">
-                  <p className="text-lg italic text-gray-200">
-                    "Seeking to leverage my technical expertise in a high-growth environment, delivering innovative software solutions while pushing the boundaries of web technology."
-                  </p>
-                </div>
-              </div>
+              <h3 className="text-2xl font-bold text-white">Who Am I</h3>
+              <p className="text-gray-400 text-sm leading-relaxed">
+                My name is <span className="text-white font-semibold">Naga Sai Ramesh Kunapalli</span>. I am an aspiring software engineer and current Master of Computer Applications (MCA) student at JNTU Gurajada Vizianagaram. I enjoy coding clean interfaces and solving logical challenges.
+              </p>
             </div>
-          </div>
+            <div className="absolute top-[-50px] right-[-50px] w-28 h-28 bg-blue-500/10 rounded-full blur-2xl group-hover:bg-blue-500/20 transition-colors"></div>
+          </motion.div>
 
-          {/* RIGHT COLUMN */}
-          <div className="space-y-6">
-            {/* CARD 2: STATS (Moved Top) */}
-            <div className="glass p-8 rounded-3xl flex flex-col justify-center gap-6">
-              <div className="flex justify-between items-center border-b border-white/10 pb-4">
-                <div>
-                  <div className="text-3xl font-bold text-blue-500">2+</div>
-                  <div className="text-xs text-gray-400 font-bold uppercase">Internships</div>
-                </div>
-                <div className="text-right">
-                  <div className="text-3xl font-bold text-purple-500">4+</div>
-                  <div className="text-xs text-gray-400 font-bold uppercase">Projects</div>
-                </div>
+          {/* Card 2: Technical Focus */}
+          <motion.div 
+            variants={cardVariants}
+            className="glass p-8 rounded-3xl flex flex-col justify-between group hover:scale-[1.02] transition-all relative overflow-hidden border border-white/5 shadow-2xl"
+          >
+            <div className="space-y-4">
+              <div className="w-12 h-12 rounded-2xl bg-purple-500/10 flex items-center justify-center text-purple-400 border border-purple-500/20">
+                <Terminal className="w-6 h-6" />
               </div>
-              <div className="text-center">
-                <div className="text-3xl font-bold text-pink-500">4+</div>
-                <div className="text-xs text-gray-400 font-bold uppercase">Certifications</div>
+              <h3 className="text-2xl font-bold text-white">Tech Specialization</h3>
+              <p className="text-gray-400 text-sm leading-relaxed">
+                I specialize in full-stack web architectures using <span className="text-white font-semibold">Python, React, Node.js, and SQL</span>. I build responsive frontends integrated with optimized machine learning logic, NLP classifiers, and Gemini APIs.
+              </p>
+            </div>
+            <div className="absolute top-[-50px] right-[-50px] w-28 h-28 bg-purple-500/10 rounded-full blur-2xl group-hover:bg-purple-500/20 transition-colors"></div>
+          </motion.div>
+
+          {/* Card 3: Academic Background */}
+          <motion.div 
+            variants={cardVariants}
+            className="glass p-8 rounded-3xl flex flex-col justify-between group hover:scale-[1.02] transition-all relative overflow-hidden border border-white/5 shadow-2xl"
+          >
+            <div className="space-y-4">
+              <div className="w-12 h-12 rounded-2xl bg-pink-500/10 flex items-center justify-center text-pink-400 border border-pink-500/20">
+                <BookOpen className="w-6 h-6" />
               </div>
+              <h3 className="text-2xl font-bold text-white">Academic Path</h3>
+              <p className="text-gray-400 text-sm leading-relaxed">
+                Currently pursuing my Master of Computer Applications (2024-2026 expected) at <span className="text-white font-semibold">JNTU GV</span> with an active score of <span className="text-pink-400 font-bold">7.87 SGPA</span>. Background in Mathematics, Chemistry, and Computer Science (B.Sc. - 8.27 CGPA).
+              </p>
             </div>
+            <div className="absolute top-[-50px] right-[-50px] w-28 h-28 bg-pink-500/10 rounded-full blur-2xl group-hover:bg-pink-500/20 transition-colors"></div>
+          </motion.div>
 
-            {/* CARD 3: ACTIONS (New, Replaces Photo) */}
-            <div className="glass p-8 rounded-3xl flex flex-col justify-center gap-4 h-[200px]">
-              <a
-                href="/Naga_Sai_Ramesh_Resume.pdf"
-                target="_blank"
-                className="w-full py-4 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-xl transition-all shadow-lg hover:shadow-blue-600/30 flex justify-center items-center gap-2 group"
-              >
-                <svg className="w-5 h-5 group-hover:animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" /></svg>
-                Download Resume
-              </a>
-              <a
-                href="#contact"
-                className="w-full py-4 glass hover:bg-white/10 text-white font-bold rounded-xl transition-all flex justify-center items-center gap-2 border border-white/10"
-              >
-                Let's Talk
-              </a>
+          {/* Card 4: Philosophy */}
+          <motion.div 
+            variants={cardVariants}
+            className="glass p-8 rounded-3xl md:col-span-2 flex flex-col justify-between group hover:scale-[1.02] transition-all border border-white/5 shadow-2xl relative overflow-hidden"
+          >
+            <div className="space-y-4">
+              <div className="w-12 h-12 rounded-2xl bg-indigo-500/10 flex items-center justify-center text-indigo-400 border border-indigo-500/20">
+                <Heart className="w-6 h-6" />
+              </div>
+              <h3 className="text-2xl font-bold text-white">My Mission</h3>
+              <p className="text-gray-300 text-base leading-relaxed">
+                "Seeking to leverage technical foundations in machine learning, Python, and frontend development in a high-growth environment. I am dedicated to writing clean, maintainable code, implementing responsive design patterns, and building solutions that deliver business value and clean developer experiences."
+              </p>
             </div>
-          </div>
+            <div className="absolute top-[-50px] right-[-50px] w-36 h-36 bg-indigo-500/5 rounded-full blur-3xl"></div>
+          </motion.div>
 
-        </div>
+          {/* Card 5: Resume & Call to Action */}
+          <motion.div 
+            variants={cardVariants}
+            className="glass p-8 rounded-3xl flex flex-col justify-center gap-4 border border-white/5 shadow-2xl relative overflow-hidden"
+          >
+            <a
+              href="/Naga_Sai_Ramesh_Resume.pdf"
+              target="_blank"
+              className="w-full py-4 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-bold rounded-2xl transition-all shadow-lg hover:shadow-blue-500/25 flex justify-center items-center gap-2 group active:scale-95"
+            >
+              <Download className="w-5 h-5 group-hover:translate-y-0.5 transition-transform" />
+              Download Resume
+            </a>
+            <a
+              href="#contact"
+              onClick={(e) => {
+                e.preventDefault();
+                document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+              }}
+              className="w-full py-4 glass hover:bg-white/5 text-white font-bold rounded-2xl transition-all flex justify-center items-center gap-2 border border-white/10 hover:border-white/20 active:scale-95"
+            >
+              <MessageSquare className="w-5 h-5" />
+              Let's Connect
+            </a>
+          </motion.div>
+        </motion.div>
       </div>
     </section>
   );

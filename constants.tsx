@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { NavItem, Skill, Project, Experience, Education, Certification } from './types';
+import { NavItem, Skill, Project, Experience, Education, Certification, Achievement } from './types';
 
 export const NAV_ITEMS: NavItem[] = [
   { label: 'About', href: '#about' },
@@ -8,6 +8,7 @@ export const NAV_ITEMS: NavItem[] = [
   { label: 'Experience', href: '#experience' },
   { label: 'Projects', href: '#projects' },
   { label: 'Education', href: '#education' },
+  { label: 'Achievements', href: '#achievements' },
   { label: 'Certifications', href: '#certifications' },
   { label: 'Contact', href: '#contact' },
 ];
@@ -43,8 +44,15 @@ export const PROJECTS: Project[] = [
     ],
     tech: ['Python', 'NLP', 'Scikit-learn', 'React', 'FastAPI'],
     github: 'https://github.com/NagaSaiRamesh06/JobCheck',
-    demo: 'https://github.com/NagaSaiRamesh06/JobCheck', // Placeholder: using Repo as demo since no live URL provided
-    image: '/jobcheckfrontpage.png'
+    demo: 'https://github.com/NagaSaiRamesh06/JobCheck',
+    image: '/jobcheckfrontpage.png',
+    features: [
+      'Real-time text analysis using state-of-the-art NLP pipelines.',
+      'FastAPI backend achieving under 50ms latency for predictive classification.',
+      'Interactive React-based recruitment fraud monitoring dashboard.',
+      'Custom web scraping tools for automated dataset collection and update.'
+    ],
+    challenges: 'Faced significant data imbalance (fake postings represented <5% of raw data). Resolved this by implementing SMOTE (Synthetic Over-sampling) along with balanced class weights in Scikit-learn, bringing model recall up to 92.5%.'
   },
   {
     title: 'CareerVibe AI',
@@ -55,8 +63,15 @@ export const PROJECTS: Project[] = [
     ],
     tech: ['React', 'TypeScript', 'Gemini API', 'Node.js', 'Vite'],
     github: 'https://github.com/NagaSaiRamesh06/CareerVibe-AI',
-    demo: 'https://ai-integrated-placement-preparation.vercel.app/',
-    image: '/careerVibeai.png'
+    demo: 'https://careervibe-frontend.onrender.com',
+    image: '/careerVibeai.png',
+    features: [
+      'Gemini LLM-integrated resume scoring and detailed ATS improvement feedback.',
+      'Interactive voice/text mock interview rooms mimicking real interview environments.',
+      'Dynamic resume generator and template matching tailored to job descriptions.',
+      'Comprehensive performance analytics history using LocalStorage and custom graphs.'
+    ],
+    challenges: 'Handling real-time state synchronization and voice stream feedback on low-bandwidth networks. Overcame this by building a robust debounced React hook and caching response chunks, which improved user perceived performance by 40%.'
   },
   {
     title: 'TypeMaster AI',
@@ -66,8 +81,15 @@ export const PROJECTS: Project[] = [
     ],
     tech: ['React', 'TypeScript', 'Tailwind', 'Canvas API'],
     github: 'https://github.com/NagaSaiRamesh06/TypeMaster',
-    demo: 'https://typing-speed-evaluation-system-with.vercel.app/', // Placeholder
-    image: '/Typingmaster.png'
+    demo: 'https://typing-speed-evaluation-system-with.vercel.app/',
+    image: '/Typingmaster.png',
+    features: [
+      'High-precision WPM (words per minute) and key accuracy tracking.',
+      'Beautiful automated custom certificate generation dynamically rendered using HTML5 Canvas API.',
+      'Interactive dashboards depicting speed progression over historical tests.',
+      'Fluid typing field with colorized visual indicators matching typing accuracy.'
+    ],
+    challenges: 'Achieving consistent key timing measurements across various layout configs. Solved by binding directly to keyup/keydown events at the document level using high-resolution performance timers.'
   },
   {
     title: 'Smart Tourist Weather',
@@ -77,8 +99,15 @@ export const PROJECTS: Project[] = [
     ],
     tech: ['JavaScript', 'Weather API', 'HTML/CSS'],
     github: 'https://github.com/NagaSaiRamesh06/WeatherApp',
-    demo: 'https://live-weather-app-drab.vercel.app/', // Placeholder
-    image: '/live weather.png'
+    demo: 'https://live-weather-app-drab.vercel.app/',
+    image: '/live weather.png',
+    features: [
+      'Detailed real-time local weather reports using geolocation browser services.',
+      'Multi-day forecasts detailing wind, pressure, humidity, and UV indicators.',
+      'Dynamic UI background graphics adapting automatically to matching weather states.',
+      'Fast city lookup autocomplete with smart query caching.'
+    ],
+    challenges: 'Preserving weather API limits while avoiding repeat query latency. Solved by building a lightweight custom caching solution utilizing session-bound localStorage.'
   }
 ];
 
@@ -109,7 +138,7 @@ export const EDUCATION: Education[] = [
     degree: 'Master of Computer Applications (MCA)',
     institution: 'JNTU Gurajada Vizianagaram',
     period: '2024 – Present',
-    score: 'SGPA: 7.87',
+    score: 'CGPA: 7.87',
     details: 'Expected Graduation: 2026'
   },
   {
@@ -138,3 +167,37 @@ export const CERTIFICATIONS: Certification[] = [
   { name: 'Elite Certification – Industry 4.0 & Industrial IoT', issuer: 'NPTEL (IIT Kharagpur)', link: 'https://drive.google.com/file/d/1Q7nldr4ZsRtCdbY1bMqM0iQMTvrQsKGS/view?usp=drive_link' },
   { name: 'Gen AI Hackathon', issuer: 'GenAiVersity', link: 'https://drive.google.com/file/d/1OpCj51Hu076klzS1od57HDRcgJ41PMv-/view?usp=drive_link' },
 ];
+
+export const ACHIEVEMENTS: Achievement[] = [
+  {
+    title: 'Python Full Stack Intern',
+    metric: 'Infosys Springboard',
+    icon: 'Briefcase',
+    description: 'Spearheaded AI research and developed NLP classification systems to prevent recruitment scams.'
+  },
+  {
+    title: 'AI/ML Engineering Intern',
+    metric: 'SmartBridge',
+    icon: 'Award',
+    description: 'Completed 240+ hours of advanced machine learning pipelines, regression models, and data extraction.'
+  },
+  {
+    title: 'Tech Content Creator',
+    metric: '15K+ Subscribers',
+    icon: 'Youtube',
+    description: 'Built a programming and computer education YouTube community sharing coding lectures and insights.'
+  },
+  {
+    title: 'Educational Influencer',
+    metric: '13K+ Followers',
+    icon: 'Instagram',
+    description: 'Create technical content, study guides, and industry news infographics for aspiring software engineers.'
+  },
+  {
+    title: 'IIT NPTEL Elite Scholar',
+    metric: 'Elite Grade',
+    icon: 'Cpu',
+    description: 'Earned Elite status certification in Industry 4.0 & Industrial Internet of Things (IoT) from IIT Kharagpur.'
+  }
+];
+

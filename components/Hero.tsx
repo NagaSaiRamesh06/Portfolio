@@ -1,80 +1,186 @@
-
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
+import { Github, Linkedin, Youtube, Instagram, Mail, FileText, ArrowRight, Award, FolderGit2, Briefcase, GraduationCap } from 'lucide-react';
 
 const Hero: React.FC = () => {
+  const roles = ['Full Stack Developer', 'Python Developer', 'AI Enthusiast', 'MCA Student'];
+  const [currentWordIndex, setCurrentWordIndex] = useState(0);
+  const [currentText, setCurrentText] = useState('');
+  const [isDeleting, setIsDeleting] = useState(false);
+
+  useEffect(() => {
+    const word = roles[currentWordIndex];
+    let timer: NodeJS.Timeout;
+
+    if (isDeleting) {
+      timer = setTimeout(() => {
+        setCurrentText(prev => prev.substring(0, prev.length - 1));
+      }, 40);
+    } else {
+      timer = setTimeout(() => {
+        setCurrentText(word.substring(0, currentText.length + 1));
+      }, 80);
+    }
+
+    if (!isDeleting && currentText === word) {
+      timer = setTimeout(() => setIsDeleting(true), 2000);
+    } else if (isDeleting && currentText === '') {
+      setIsDeleting(false);
+      setCurrentWordIndex(prev => (prev + 1) % roles.length);
+    }
+
+    return () => clearTimeout(timer);
+  }, [currentText, isDeleting, currentWordIndex]);
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: { staggerChildren: 0.15, delayChildren: 0.2 }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { y: 30, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1,
+      transition: { type: 'spring', stiffness: 100, damping: 15 }
+    }
+  };
+
+  const stats = [
+    { value: '4+', label: 'Projects', icon: FolderGit2, color: 'text-blue-400' },
+    { value: '2', label: 'Internships', icon: Briefcase, color: 'text-purple-400' },
+    { value: '4', label: 'Certifications', icon: Award, color: 'text-pink-400' },
+    { value: 'MCA', label: 'Student', icon: GraduationCap, color: 'text-indigo-400' }
+  ];
+
   return (
-    <section id="home" className="min-h-screen flex items-center pt-20 relative overflow-hidden">
-      {/* Background Blobs */}
-      <div className="absolute top-1/4 -left-20 w-72 h-72 bg-blue-600/20 blur-[120px] rounded-full"></div>
-      <div className="absolute bottom-1/4 -right-20 w-96 h-96 bg-purple-600/20 blur-[120px] rounded-full"></div>
+    <section id="home" className="min-h-screen flex items-center pt-24 pb-12 relative overflow-hidden bg-[#030712]">
+      {/* Dynamic Background Gradients */}
+      <div className="absolute top-1/4 -left-20 w-80 h-80 bg-blue-600/10 blur-[130px] rounded-full animate-pulse"></div>
+      <div className="absolute bottom-1/4 -right-20 w-[400px] h-[400px] bg-purple-600/10 blur-[130px] rounded-full animate-pulse" style={{ animationDuration: '8s' }}></div>
 
       <div className="container mx-auto px-6 relative z-10">
-        <div className="grid md:grid-cols-2 gap-12 items-center">
+        <div className="grid lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+          
           {/* LEFT COLUMN: Text Content */}
-          <div>
-            <div className="inline-block px-4 py-1.5 rounded-full glass mb-6">
-              <span className="text-sm font-medium text-blue-400">👋 Welcome to my portfolio</span>
-            </div>
+          <motion.div 
+            variants={containerVariants}
+            initial="hidden"
+            animate="visible"
+            className="lg:col-span-7 space-y-6 text-left"
+          >
+            <motion.div variants={itemVariants} className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass border border-white/5">
+              <span className="flex h-2 w-2 relative">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
+              </span>
+              <span className="text-xs font-semibold text-blue-400 uppercase tracking-widest">Available for Opportunities</span>
+            </motion.div>
 
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-extrabold tracking-tight mb-8">
-              <span className="block text-white mb-2">I am</span>
-              <span className="block text-gradient">Naga Sai Ramesh Kunapalli</span>
-            </h1>
+            <motion.h1 variants={itemVariants} className="text-4xl sm:text-6xl xl:text-7xl font-extrabold tracking-tight">
+              <span className="block text-white mb-2 font-light">Hello, I am</span>
+              <span className="block text-gradient">Naga Sai Ramesh K.</span>
+            </motion.h1>
 
-            <p className="text-xl md:text-2xl text-gray-400 max-w-2xl leading-relaxed mb-10">
-              A <span className="text-white font-semibold">Full Stack Developer</span> & MCA Student
-              transforming complex problems into scalable, high-performance, AI-driven solutions.
-            </p>
+            <motion.div variants={itemVariants} className="h-10 text-xl sm:text-3xl font-mono text-gray-300 font-bold flex items-center">
+              <span>{currentText}</span>
+              <span className="inline-block w-1.5 h-6 bg-blue-500 ml-1.5 animate-pulse" />
+            </motion.div>
 
-            <div className="flex flex-wrap gap-4">
+            <motion.p variants={itemVariants} className="text-base sm:text-lg text-gray-400 leading-relaxed max-w-xl">
+              An MCA student specializing in <span className="text-white font-semibold">Python</span> and <span className="text-white font-semibold">Full Stack Web Development</span>. Experienced in building AI-integrated workflows, structuring efficient data structures, and developing intuitive, scalable user interfaces.
+            </motion.p>
+
+            {/* Social Icons Link Group */}
+            <motion.div variants={itemVariants} className="flex gap-4">
+              {[
+                { href: 'https://github.com/NagaSaiRamesh06', icon: Github, color: 'hover:bg-white/10 hover:text-white' },
+                { href: 'https://linkedin.com/in/naga-sai-ramesh-kunapalli-023798283', icon: Linkedin, color: 'hover:bg-blue-600/10 hover:text-blue-400' },
+                { href: 'https://youtube.com/@nagasairamesh06', icon: Youtube, color: 'hover:bg-red-600/10 hover:text-red-500' },
+                { href: 'https://instagram.com/naga_sai_ramesh_kunapalli', icon: Instagram, color: 'hover:bg-pink-600/10 hover:text-pink-400' },
+                { href: 'mailto:nagasairameshkunapalli@gmail.com', icon: Mail, color: 'hover:bg-purple-600/10 hover:text-purple-400' }
+              ].map((social, idx) => (
+                <a
+                  key={idx}
+                  href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`w-11 h-11 rounded-xl glass border border-white/5 flex items-center justify-center text-gray-400 transition-all hover:scale-110 ${social.color}`}
+                >
+                  <social.icon className="w-5 h-5" />
+                </a>
+              ))}
+            </motion.div>
+
+            {/* Action Buttons */}
+            <motion.div variants={itemVariants} className="flex flex-wrap gap-4 pt-2">
               <a
                 href="#projects"
-                className="px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-xl transition-all hover:scale-105"
+                onClick={(e) => {
+                  e.preventDefault();
+                  document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }}
+                className="px-7 py-3.5 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-bold rounded-xl transition-all hover:shadow-[0_0_30px_rgba(59,130,246,0.35)] flex items-center gap-2 group"
               >
-                View My Work
+                View My Work <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </a>
-              <button
-                className="px-8 py-4 glass hover:bg-white/10 text-white font-bold rounded-xl transition-all flex items-center gap-2"
-                onClick={() => window.open('https://github.com/NagaSaiRamesh06', '_blank')}
+              <a
+                href="/Naga_Sai_Ramesh_Resume.pdf"
+                target="_blank"
+                className="px-7 py-3.5 glass hover:bg-white/5 text-white font-bold rounded-xl transition-all border border-white/10 hover:border-white/20 flex items-center gap-2"
               >
-                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.43.372.823 1.102.823 2.222 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 21.795 24 17.295 24 12c0-6.627-5.373-12-12-12z" />
-                </svg>
-                GitHub
-              </button>
-            </div>
-          </div>
+                <FileText className="w-4 h-4" /> Download Resume
+              </a>
+            </motion.div>
+          </motion.div>
 
-          {/* RIGHT COLUMN: Profile Photo & Resume */}
-          <div className="flex flex-col items-center justify-center relative">
-            <div className="relative w-72 h-72 md:w-96 md:h-96 rounded-full overflow-hidden border-4 border-blue-500/20 shadow-[0_0_80px_rgba(59,130,246,0.3)] animate-float">
+          {/* RIGHT COLUMN: Profile Photo & Key Stats */}
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ type: 'spring', stiffness: 50, damping: 15, delay: 0.3 }}
+            className="lg:col-span-5 flex flex-col items-center justify-center relative"
+          >
+            {/* Avatar Frame with animated glowing borders */}
+            <div className="relative w-64 h-64 sm:w-80 sm:h-80 md:w-96 md:h-96 rounded-full overflow-hidden border-2 border-white/5 animate-pulse-glow shadow-[0_0_50px_rgba(59,130,246,0.25)] animate-float">
               <img
                 src="/Profile Pic.png"
                 alt="Naga Sai Ramesh Kunapalli"
                 className="w-full h-full object-cover"
               />
-              {/* Glass overlay */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+              <div className="absolute inset-0 bg-gradient-to-t from-gray-950/30 to-transparent"></div>
             </div>
 
-            {/* Download Resume Button (Floating below) */}
-            <a
-              href="/Naga_Sai_Ramesh_Resume.pdf"
-              target="_blank"
-              className="mt-8 px-8 py-4 bg-white text-gray-900 font-bold rounded-full shadow-[0_0_30px_rgba(255,255,255,0.3)] hover:shadow-[0_0_50px_rgba(255,255,255,0.5)] transition-all hover:-translate-y-1 flex items-center gap-2"
-            >
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" /></svg>
-              Download Resume
-            </a>
-          </div>
+            {/* Float Stats Badge Grid */}
+            <div className="w-full max-w-lg mt-12 grid grid-cols-2 md:grid-cols-4 gap-4">
+              {stats.map((stat, idx) => (
+                <motion.div
+                  key={idx}
+                  whileHover={{ y: -5 }}
+                  className="glass p-4 rounded-2xl border border-white/5 flex flex-col items-center justify-center shadow-lg"
+                >
+                  <div className="p-2 bg-white/5 rounded-xl mb-2">
+                    <stat.icon className={`w-5 h-5 ${stat.color}`} />
+                  </div>
+                  <span className="text-xl font-bold text-white tracking-tight">{stat.value}</span>
+                  <span className="text-[10px] sm:text-xs text-gray-400 font-bold uppercase tracking-wider mt-0.5">{stat.label}</span>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+
         </div>
       </div>
-
-      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce">
-        <a href="#about" className="text-gray-500 hover:text-white transition-colors">
-          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-          </svg>
+      
+      <div className="absolute bottom-6 left-1/2 -translate-x-1/2 animate-bounce cursor-pointer opacity-40 hover:opacity-100 transition-opacity">
+        <a href="#about" onClick={(e) => {
+          e.preventDefault();
+          document.getElementById('about')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }}>
+          <ArrowRight className="w-6 h-6 rotate-90 text-white" />
         </a>
       </div>
     </section>

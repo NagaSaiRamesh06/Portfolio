@@ -16,6 +16,8 @@ export interface Project {
   github?: string;
   demo?: string;
   image: string;
+  features?: string[];
+  challenges?: string;
 }
 
 export interface Experience {
@@ -38,4 +40,11 @@ export interface Certification {
   issuer: string;
   duration?: string;
   link?: string;
+}
+
+export interface Achievement {
+  title: string;
+  metric: string;
+  icon: string;
+  description: string;
 }

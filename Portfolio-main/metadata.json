@@ -1,8 +1,0 @@
-{
-  "name": "Naga Sai Ramesh Kunapalli Portfolio",
-  "description": "A professional, job-ready personal portfolio for a Full Stack Developer & MCA student featuring a modern glassmorphism UI, smooth scroll navigation, and an AI-powered portfolio assistant.",
-  "requestFramePermissions": [
-    "camera",
-    "microphone"
-  ]
-}
