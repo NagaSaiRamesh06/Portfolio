@@ -7,6 +7,7 @@ A modern, responsive, and interactive personal portfolio web application built w
 ## 🔗 Live Demos
 
 - **Portfolio Website:** [https://nagasai-portfolio.com](https://nagasai-portfolio.com)
+- **JobCheck Demo:** [https://job-check-nlp-new.onrender.com](https://job-check-nlp-new.onrender.com/)
 - **CareerVibe AI Demo:** [https://careervibe-frontend.onrender.com](https://careervibe-frontend.onrender.com/)
 - **TypeMaster AI Demo:** [https://typing-speed-evaluation-system-with.vercel.app/](https://typing-speed-evaluation-system-with.vercel.app/)
 - **Smart Tourist Weather Demo:** [https://live-weather-app-drab.vercel.app/](https://live-weather-app-drab.vercel.app/)
@@ -140,7 +141,7 @@ Portfolio-main/
 | Project | Description | Tech Stack | Links |
 | :--- | :--- | :--- | :--- |
 | **CareerVibe AI** | AI-driven career prep platform leveraging Google Gemini API for personalized resume feedback and mock interviews with <100ms latency. | React, TypeScript, Gemini API, Node.js, Vite | [Live Demo](https://careervibe-frontend.onrender.com) \| [Source Code](https://github.com/NagaSaiRamesh06/CareerVibe-AI) |
-| **JobCheck** | NLP-based recruitment fraud detection system achieving 92% accuracy in identifying fake job postings with SMOTE balancing. | Python, NLP, Scikit-learn, React, FastAPI | [Live Demo](https://github.com/NagaSaiRamesh06/JobCheck) \| [Source Code](https://github.com/NagaSaiRamesh06/JobCheck) |
+| **JobCheck** | NLP-based recruitment fraud detection system achieving 92% accuracy in identifying fake job postings with SMOTE balancing. | Python, NLP, Scikit-learn, React, FastAPI | [Live Demo](https://job-check-nlp-new.onrender.com) \| [Source Code](https://github.com/NagaSaiRamesh06/JobCheck) |
 | **TypeMaster AI** | Typing speed evaluation system featuring custom HTML5 Canvas certificate generation and real-time accuracy tracking. | React, TypeScript, Tailwind, Canvas API | [Live Demo](https://typing-speed-evaluation-system-with.vercel.app/) \| [Source Code](https://github.com/NagaSaiRamesh06/TypeMaster) |
 | **Smart Tourist Weather** | Real-time weather forecasting application providing live climate data, multi-day forecasts, and local caching. | JavaScript, Weather API, HTML/CSS | [Live Demo](https://live-weather-app-drab.vercel.app/) \| [Source Code](https://github.com/NagaSaiRamesh06/WeatherApp) |
 

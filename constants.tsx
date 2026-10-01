@@ -44,7 +44,7 @@ export const PROJECTS: Project[] = [
     ],
     tech: ['Python', 'NLP', 'Scikit-learn', 'React', 'FastAPI'],
     github: 'https://github.com/NagaSaiRamesh06/JobCheck',
-    demo: 'https://github.com/NagaSaiRamesh06/JobCheck',
+    demo: 'https://job-check-nlp-new.onrender.com',
     image: '/jobcheckfrontpage.png',
     features: [
       'Real-time text analysis using state-of-the-art NLP pipelines.',
